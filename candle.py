@@ -1,6 +1,7 @@
 class SingleCandle:
 
     candle_date = ''
+    candle_ticker = ''
     candle_open = 0.0
     candle_high = 0.0
     candle_low = 0.0
@@ -13,9 +14,12 @@ class SingleCandle:
     candle_average_loss = 0.0
     candle_rs = 0.0
     candle_rsi = 0.0
+    candle_short_ema = 0.0
+    candle_long_ema = 0.0
+    candle_macd = 0.0
+    candle_macd_signal = 0.0
 
-
-    def __init__(self, date, open, high, low, close, adj_close, volume):
+    def __init__(self, date, open, high, low, close, adj_close, volume, ticker):
         self.candle_date = date
         self.candle_open = open
         self.candle_high = high
@@ -28,6 +32,7 @@ class SingleCandle:
         self.candle_rsi = 0.0
         self.candle_gain = 0.0
         self.candle_loss = 0.0
+        self.candle_ticker = ticker
 
 
     def to_string(self):

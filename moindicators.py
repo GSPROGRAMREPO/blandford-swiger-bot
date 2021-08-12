@@ -1,22 +1,12 @@
-'''
+def set_all_indicators(candle_list):
+    set_candle_gain(candle_list)
+    set_candle_average_gain(candle_list)
+    set_candle_rs(candle_list)
+    set_candle_rsi(candle_list)
+    set_candle_ema(candle_list)
+    set_candle_macd(candle_list)
 
-The Goal of the code belows is to calculate RSI
-The Formula for RSI is as follows
-
-                  100
-    RSI = 100 - --------
-                 1 + RS
-
-    RS = Average Gain / Average Loss
-
-    First Average Gain = Sum of Gains over the past 14 periods / 14.
-    First Average Loss = Sum of Losses over the past 14 periods / 14
-
-    This RSI calculation is based on 14 periods.
-    Losses are expressed as positive values, not negative values.
-
-'''
-
+    return
 
 def set_candle_gain(candles):
 
@@ -84,4 +74,64 @@ def set_candle_rsi(candles):
     for candle in candles:
         if candle.candle_rs != 0.0:
             candle.candle_rsi = 100-(100/(candle.candle_rs + 1))
-            print(candle.candle_date + " RSI:" + str(candle.candle_rsi))
+            #print(candle.candle_date + " RSI:" + str(candle.candle_rsi))
+
+
+def set_candle_ema(candles):
+
+    set_twelve_ema(candles)
+    set_twentysix_ema(candles)
+
+    return
+
+
+def set_twelve_ema(candles):
+    periods = 12
+    smoothing = 2
+    total = 0.0
+    i = 0
+
+    for candle in candles:
+        if i < periods:
+            total += float(candle.candle_close)
+            i = i + 1
+        elif i == periods:
+            candle.candle_short_ema = total / periods
+            i = i + 1
+        else:
+            candle.candle_short_ema = float(candle.candle_close) * (smoothing/(periods+1)) \
+                                      + candles[i-1].candle_short_ema*(1-(smoothing/(periods+1)))
+            i = i + 1
+    return
+
+
+def set_twentysix_ema(candles):
+
+    periods = 26
+    total = 0.0
+    smoothing = 2
+    i = 0
+
+    for candle in candles:
+        if i < periods:
+            total += float(candle.candle_close)
+            i = i + 1
+        elif i == periods:
+            candle.candle_long_ema = total / periods
+            i = i + 1
+        else:
+            candle.candle_long_ema = float(candle.candle_close) * (smoothing/(periods+1)) \
+                                      + candles[i-1].candle_long_ema*(1-(smoothing/(periods+1)))
+            i = i + 1
+            #print(candle.candle_date + ': ' + str(candle.candle_long_ema))
+    return
+
+
+def set_candle_macd(candles):
+
+    for candle in candles:
+        if candle.candle_short_ema != 0.0 and candle.candle_long_ema != 0.0:
+            candle.candle_macd = candle.candle_short_ema - candle.candle_long_ema
+
+    return
+
