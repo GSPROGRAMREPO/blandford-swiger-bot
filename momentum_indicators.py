@@ -1,3 +1,5 @@
+import datetime
+
 def set_all_indicators(candle_list):
     set_candle_gain(candle_list)
     set_average_gain(candle_list)
@@ -15,7 +17,15 @@ def set_all_indicators(candle_list):
 
 
 def set_candle_id(candles):
+
+
+
+
     for index, candle in enumerate(candles):
+        year = int(candle.date[0:4])
+        month = int(candle.date[5:7])
+        day = int(candle.date[8:])
+        test_id = int(datetime.datetime(year, month, day, 0, 0, ).timestamp())
         candle.id = index
     return
 
@@ -31,6 +41,7 @@ def set_candle_gain(candles):
     for index, candle in enumerate(candles):
 
         if index > 1:
+            # print(candle.ticker)
             previous_candle = candles[index - 1]
             gain = round(float(candle.close) - float(previous_candle.close), 3)
 

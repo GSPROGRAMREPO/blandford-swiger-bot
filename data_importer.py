@@ -24,8 +24,7 @@ ticker_list = ['AAPL', 'MSFT', 'AMZN', 'FB', 'GOOGL',
            'GM', 'DG', 'BSX', 'NEM', 'ETN', 'COF', 'REGN', 'EMR',
            'COP', 'AON', 'WM', 'MCO', 'NOC', 'FCX', 'ROP', 'KMB',
            'ROST', 'CTSH', 'KLAC', 'TEL', 'BAX', 'EXC', 'EA', 'APH',
-           'AEP', 'APTV', 'STZ', 'MCHP', 'BIIB', 'CMG',
-            'LHX', 'MET', 'JCI', 'TT', 'BK', 'XLNX',
+           'AEP', 'APTV', 'STZ', 'MCHP', 'BIIB', 'CMG', 'LHX', 'MET', 'JCI', 'TT', 'BK', 'XLNX',
             'PH', 'PPG', 'GIS', 'CMI', 'F', 'HPQ', 'TRV', 'AIG',
             'TROW', 'EBAY', 'MAR', 'SLB', 'SRE', 'MNST', 'XEL', 'EOG',
             'ALXN', 'ORLY', 'ALL', 'PSA', 'ZBH', 'WBA', 'PRU',
@@ -37,9 +36,9 @@ ticker_list = ['AAPL', 'MSFT', 'AMZN', 'FB', 'GOOGL',
             'MKC', 'EIX', 'DTE', 'DHI', 'VIAC', 'WST', 'FITB', 'VRTS',
             'HSY', 'EFX', 'AVB', 'ZBRA', 'PXD', 'TER', 'VMC', 'PPL',
             'LH', 'LEN', 'CBRE', 'IP', 'RSG','NTRS', 'KSU', 'VRSN',
-            'EQR', 'XYL', 'ODFL', 'EXPE', 'MLM',
+            'EQR', 'XYL', 'EXPE', 'MLM',
             'URI', 'LVS', 'TSN', 'ETR', 'MTB', 'CDW', 'DOV', 'AEE', 'GRMN',
-            'OKE', 'HIG', 'KEY', 'GWW', 'HAL', 'PKI', 'VTR', 'TYL',
+            'OKE', 'HIG', 'KEY', 'GWW', 'PKI', 'VTR', 'TYL',
             'OXY', 'TSCO', 'STE', 'NUE', 'RF', 'AKAM', 'HES', 'DGX',
             'CMS', 'CAH', 'CAG', 'KMX', 'AES', 'ABC', 'WAT', 'DRI',
             'FE', 'EXPD', 'CTXS', 'FMC', 'NDAQ', 'POOL', 'K', 'CCL', 'PEAK',
@@ -56,21 +55,24 @@ ticker_list = ['AAPL', 'MSFT', 'AMZN', 'FB', 'GOOGL',
 
 # Tickers are added to the pool at the beginning of the following year to account for
 # any large jumps due to being added to the SnP
-tickers_added_2016 = ['HCA', 'SWKS', 'HSIC', 'EQIX', 'HBI', 'AAL', 'O', 'QRVO',
+tickers_added_2016 = {'2016-01-01': ['HCA', 'SWKS', 'HSIC', 'EQIX', 'HBI', 'AAL', 'O', 'QRVO',
                       'JBHT', 'KHC', 'AAP', 'PYPL', 'ATVI', 'UAL', 'FOX','NWS',
-                      'VRSK', 'HPE', 'SYF', 'ILMN', 'CHD']
-tickers_added_2017 = ['WLTW','EXR','CFG','FRT','AWK','UDR','CNC','HOLX','UA',
+                      'VRSK', 'HPE', 'SYF', 'ILMN', 'CHD']}
+
+tickers_added_2017 = {'2017-01-01': ['WLTW','EXR','CFG','FRT','AWK','UDR','CNC','HOLX','UA',
                       'ULTA', 'GPN','ALK','DLR','LKQ','AJG','TDG','FBHS','ALB',
-                      'LNT','FTV','MTD','CHTR','COO','MAA']
-tickers_added_2018 = ['IDXX','INCY','CBOE','REG','DISH','SNPS','ARE','RJF','DXC',
+                      'LNT','FTV','MTD','CHTR','COO','MAA']}
+
+tickers_added_2018 = {'2018-01-01': ['IDXX','INCY','CBOE','REG','DISH','SNPS','ARE','RJF','DXC',
                       'IT','INFO','ALGN','ANSS','RE','HLT','BKR','AOS','DRE','MGM',
-                      'PKG','RMD','IQV','SBAC','CDNS','NCLH','AMD']
-tickers_added_2019 = ['HII','IPGP','SIVB','TTWO','MSCI','ABMD','EVRG','TWTR','BR',
+                      'PKG','RMD','IQV','SBAC','CDNS','NCLH','AMD']}
+
+tickers_added_2019 = {'2019-01-01': ['HII','IPGP','SIVB','TTWO','MSCI','ABMD','EVRG','TWTR','BR',
                       'FLT','CPRT','ANET','ROL','FTNT','KEYS','JKHY','FANG','LW',
-                      'MXIM','CE']
+                      'MXIM','CE']}
 
 '''
 for ticker in ticker_list:
-    data = yf.download(ticker, start="2013-10-01", end="2020-01-1", threads=True)
+    data = yf.download(ticker, start="2013-11-01", end="2020-01-1", threads=True)
     data.to_csv(('info\\' + ticker + '.csv'))
 '''
